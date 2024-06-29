@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //task1
+        const num1 = +prompt('Введите первое число');
+        const num2 = +prompt('Введите второе число');
+        (num1 <= 1) ? console.log(`Число ${num1} меньше или равно 1`) :
+            console.log(`Число ${num1} больше 1`);
+        (num2 >= 3) ? console.log(`Число ${num2} больше или равно 3`) :
+            console.log(`Число ${num2} меньше 3`);
+
+        // task2
+        let test = true;
+        (test === true) ? console.log('+++') : console.log('---');
+
+        // task3
+        const day = +prompt('Введите число месяца');
+        if (day >= 1 && day <= 31) {
+            if (day < 30) {
+                alert(`Число ${day} попадает в ${(day - day % 10) / 10 + 1} декаду месяца`);
+            } else { alert(`Число ${day} попадает в 3 декаду месяца`) }
+        } else ('Введено некорректное значение')
+
+        // task4
+        const num = +prompt('Введите целое положительное число');
+        alert(`В числе ${num}:
+        ${(num % 1000 - num % 100) / 100} сотен,
+        ${(num % 100 - num % 10) / 10} десятков,
+        ${num % 10} единиц.`);
+
+    </script>
+
+</body>
+
+</html>
