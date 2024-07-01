@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // // task1
+        const numToCube = (num) => {
+            return num ** 3;
+        }
+        console.log(numToCube(2) + numToCube(3))
+
+        // task2
+        let amount = Number(prompt('Введите свою з/п'));
+        netSalary(amount);
+        function netSalary(salary) {
+            (isNaN(salary) === true) ? alert('значение задано неверно') :
+                alert(`Размер заработной платы за вычетом налогов равен ${salary * 0.87}`)
+        }
+
+        // task3
+        const num1 = +prompt('Введите 1 число');
+        const num2 = +prompt('Введите 2 число');
+        const num3 = +prompt('Введите 3 число');
+        numCompare(num1, num2, num3);
+        function numCompare(a, b, c) {
+            if (a > b) {
+                if (a > c) {
+                    alert(`Число ${a} максимальное`);
+                } else {
+                    alert(`Число ${c} максимальное`);
+                }
+            } else if (b > c) {
+                alert(`Число ${b} максимальное`);
+            } else {
+                alert(`Число ${c} максимальное`);
+            }
+        }
+
+        // task3
+        const number1 = +prompt('Введите 1 число');
+        const number2 = +prompt('Введите 2 число');
+
+        const sum = (number1, number2) => number1 + number2;
+        const substract = (number1, number2) => {
+            if (number1 > number2) {
+                return number1 - number2;
+            } else {
+                return number2 - number1;
+            }
+        }
+        const mult = (number1, number2) => number1 * number2;
+        const divis = (number1, number2) => number1 / number2;
+        console.log(substract(number1, number2));
+
+    </script>
+</body>
+
+</html>
