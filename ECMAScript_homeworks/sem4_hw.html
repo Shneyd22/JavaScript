@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <h1 id="myElement">myElement</h1>
 
     <script>
         //     ""Получение данных о пользователе""
@@ -82,6 +83,19 @@
                 console.log(error.message);
             });
 
+        //             ""Изменение стиля элемента через заданное время""
+
+        // Напишите функцию changeStyleDelayed, которая принимает идентификатор элемента и время задержки(в миллисекундах) в качестве аргументов.Функция должна изменить стиль элемента через указанное время.
+
+
+        function changeStyleDelayed(elemId, delay) {
+            const elem = document.getElementById(elemId);
+            setTimeout(function () {
+                elem.style.color = 'red'
+            }, delay)
+        }
+        // Пример использования функции
+        changeStyleDelayed('myElement', 2000); // Через 2 секунды изменяет стиль элемента с id 'myElement'"
 
     </script>
 </body>
