@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" class="product_name" placeholder="Название продукта">
+    <input type="text" class="review" placeholder="Отзыв">
+    <button class="saveBtn">Добавить отзыв</button>
+    <h2 class="reviewsHeader">Отзывы о товарах</h2>
+    <div class="productReviews"></div>
+    <script>
+        // Урок 3. Промисы.Хранилище
+        // Создайте интерактивную веб - страницу для оставления и просмотра отзывов о продуктах.Пользователи могут добавлять отзывы о различных продуктах и просматривать добавленные отзывы.
+
+        // Страница добавления отзыва:
+
+        // Поле для ввода названия продукта.
+        // Текстовое поле для самого отзыва.
+        //         Кнопка "Добавить отзыв", которая сохраняет отзыв о продукте в LocalStorage.
+
+        // Страница просмотра отзывов:
+
+        // Показывает список всех продуктов, о которых были оставлены отзывы.
+        // При клике на название продукта отображается список всех отзывов по этому продукту.
+        // Возможность удаления отзыва(при нажатии на кнопку "Удалить" рядом с отзывом, данный отзыв удаляется из LocalStorage).
+        const product_name = document.querySelector('.product_name');
+        const review = document.querySelector('.review');
+        const saveBtn = document.querySelector('.saveBtn');
+        const productReviews = document.querySelector('.productReviews');
+
+        saveBtn.addEventListener('click', function (e) {
+            try {
+                if (product_name.value === '' || review.value === '') {
+                    throw new Error('Не все данные введены!')
+                }
+                if (!localStorage.getItem(product_name.value)) {
+                    const newReviewObj = { reviews: [] };
+                    newReviewObj.reviews.push(review.value);
+                    localStorage.setItem(product_name.value, JSON.stringify(newReviewObj));
+                } else {
+                    const savedReviewObj = JSON.parse(localStorage.getItem(product_name.value));
+                    savedReviewObj.reviews.push(review.value);
+                    localStorage.setItem(product_name.value, JSON.stringify(savedReviewObj));
+                }
+            } catch (error) {
+                alert(error);
+            }
+        });
+
+        for (let i = 0; i < localStorage.length; i++) {
+            const product = localStorage.key(i);
+            const productTitle = document.createElement('h3');
+            productTitle.textContent = product;
+            productReviews.appendChild(productTitle)
+            productTitle.addEventListener('click', function () {
+                productTitle.replaceChildren();
+                productTitle.textContent = product;
+                const reviewsList = JSON.parse(localStorage.getItem(product)).reviews;
+                if (reviewsList.length === 0) {
+                    productTitle.textContent = product + ': Отзывов о товаре пока нет';
+                } else {
+                    for (let j = 0; j < reviewsList.length; j++) {
+                        const p = document.createElement('p')
+                        p.textContent = reviewsList[j];
+                        productTitle.appendChild(p);
+                        const removeBtn = document.createElement('button');
+                        removeBtn.textContent = 'Удалить отзыв';
+                        productTitle.appendChild(removeBtn)
+                        removeBtn.addEventListener('click', function (e) {
+                            reviewsList.splice(j, 1)
+                            localStorage.setItem(product, JSON.stringify({ reviews: reviewsList }));
+                        });
+                    }
+                }
+
+            });
+        }
+
+
+
+    </script>
+</body>
+
+</html>
